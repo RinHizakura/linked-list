@@ -62,15 +62,17 @@ void swap_pair_by_value(node_t **head) {
   }
 }
 
-node_t *reverse(node_t *head) {
-  node_t *cursor = NULL;
-  while (head) {
-    node_t *next = head->next;
-    head->next = cursor;
-    cursor = head;
-    head = next;
+void reverse(node_t **head) {
+  node_t *prev = NULL;
+  node_t *next = (*head)->next;
+
+  (*head)->next = prev;
+  while (next) {
+    prev = (*head);
+    *head = next;
+    next = next->next;
+    (*head)->next = prev;
   }
-  return cursor;
 }
 
 void print_list(node_t *head) {

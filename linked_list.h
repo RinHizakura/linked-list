@@ -20,6 +20,6 @@ void remove_entry(node_t **head, node_t *entry);
 void delete_list(node_t **head);
 void swap_pair(node_t **head);
 void swap_pair_by_value(node_t **head);
-node_t *reverse(node_t *head);
+void reverse(node_t **head);
 void print_list(node_t *head);
 #endif
