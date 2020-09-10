@@ -1,4 +1,4 @@
-COPS = -Wall -Wextra -Werror
+COPS = -Wall -Wextra -Werror 
 GIT_HOOKS := .git/hooks/applied
 BUILD_DIR = build
 

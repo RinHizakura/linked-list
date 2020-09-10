@@ -1,37 +1,41 @@
 #include "linked_list.h"
 #include <stddef.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int main() {
   node_t *head = NULL;
+  srand(time(NULL));
 
-  print_list(head);
+  for (int num = 10; num < 2000; num++) {
+    for (int i = 0; i < num; i++) {
+      add_entry(&head, (rand() % 1000));
+    }
 
-  add_entry(&head, 72);
-  add_entry(&head, 101);
-  add_entry(&head, 108);
-  add_entry(&head, 109);
-  add_entry(&head, 110);
-  add_entry(&head, 111);
+    struct timespec tt1, tt2;
+    clock_gettime(CLOCK_MONOTONIC, &tt1);
+    swap_pair(&head);
+    clock_gettime(CLOCK_MONOTONIC, &tt2);
 
-  print_list(head);
+    long long time = (long long)(tt2.tv_sec * 1e9 + tt2.tv_nsec) -
+                     (long long)(tt1.tv_sec * 1e9 + tt1.tv_nsec);
 
-  node_t *entry = find_entry(head, 101);
-  remove_entry(&head, entry);
+    delete_list(&head);
 
-  entry = find_entry(head, 111);
-  remove_entry(&head, entry);
+    for (int i = 0; i < num; i++) {
+      add_entry(&head, (rand() % 1000));
+    }
+    clock_gettime(CLOCK_MONOTONIC, &tt1);
+    swap_pair_by_value(&head);
+    clock_gettime(CLOCK_MONOTONIC, &tt2);
 
-  print_list(head);
+    long long time2 = (long long)(tt2.tv_sec * 1e9 + tt2.tv_nsec) -
+                      (long long)(tt1.tv_sec * 1e9 + tt1.tv_nsec);
 
-  /* swap pair.
-   * See https://leetcode.com/problems/swap-nodes-in-pairs/
-   */
-  head = swap_pair(head);
-  print_list(head);
-
-  head = reverse(head);
-  print_list(head);
+    printf("%d, %lld, %lld\n", num, time, time2);
+    delete_list(&head);
+  }
 
   return 0;
 }
