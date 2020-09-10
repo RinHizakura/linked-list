@@ -1,4 +1,3 @@
-
 BasedOnStyle: Chromium
 Language: Cpp
 MaxEmptyLinesToKeep: 3
