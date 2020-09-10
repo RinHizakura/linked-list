@@ -24,7 +24,7 @@ old_time_collect = []
 new_time_collect = []
 
 
-for i in range(30):
+for i in range(10):
     os.system("./exec > ./plot/out.txt")
     out = np.loadtxt("./plot/out.txt", dtype = 'float',delimiter=',')
   
@@ -38,7 +38,7 @@ new_time_collect = stat(new_time_collect)
 
 plt.plot()
 plt.xlabel('node #')
-plt.ylabel('time(ns)')
+plt.ylabel('time(ms)')
 
 plt.plot(x, old_time_collect, label = 'swap node')
 plt.plot(x, new_time_collect, label = 'swap by value')

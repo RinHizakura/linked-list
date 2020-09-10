@@ -22,3 +22,12 @@ OBJ_FILES = $(C_FILES:%.c=$(BUILD_DIR)/%.o)
 
 exec: $(OBJ_FILES)
 	gcc -o exec $(OBJ_FILES)
+
+
+perf: exec
+	sudo perf stat -e instructions:u ./exec 
+
+valgrind:
+	valgrind --tool=cachegrind ./exec 
+
+
