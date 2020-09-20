@@ -21,5 +21,8 @@ void delete_list(node_t **head);
 void swap_pair(node_t **head);
 void swap_pair_by_value(node_t **head);
 void reverse(node_t **head);
+void recursive_rev(node_t **head);
+void recursive_rev_step(node_t *curr, node_t *prev, node_t **head);
+void shuffle(node_t **head);
 void print_list(node_t *head);
 #endif

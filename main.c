@@ -10,12 +10,15 @@ int main()
     srand(time(NULL));
 
     for (int i = 0; i < 10; i++) {
-        add_entry(&head, (rand() % 1000));
+        add_entry(&head, i);
     }
     printf("Prev: \n");
     print_list(head);
-    reverse(&head);
+
+
     printf("After: \n");
+
+    shuffle(&head);
     print_list(head);
     delete_list(&head);
 
